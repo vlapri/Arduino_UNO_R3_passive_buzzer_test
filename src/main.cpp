@@ -11,6 +11,7 @@
 // Podrobnosti viz README.md / See README.md for details.
 // ============================================================================
 
+#include <Arduino.h>
 #include <avr/pgmspace.h>
 #include "pitches.h"
 

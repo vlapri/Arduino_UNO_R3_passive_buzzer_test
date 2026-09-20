@@ -36,7 +36,7 @@ Sirény a poplachové signály (1–6, 12) jsou generovány procedurálně (změ
 
 ### Jazyk výpisů do konzole
 
-Na začátku souboru `buzzer_demo.ino` je konstanta:
+Na začátku souboru `src/main.cpp` je konstanta:
 
 ```cpp
 const uint8_t LANGUAGE = LANG_CS; // <-- zde přepnout na LANG_EN pro angličtinu
@@ -80,6 +80,26 @@ Obě tlačítka používají vnitřní pull-up rezistory (`INPUT_PULLUP`), takž
 - Tabulka ukázek je pole ukazatelů na funkce uložené v `PROGMEM` (`pgm_read_ptr()`), takže se nezabírá zbytečné SRAM ani pro výběr melodie.
 - Sirény/poplachy (hasiči, policie, záchranka, požár, ohrožení, Red Alert, SOS) negenerují žádná datová pole – vzniknou přímo výpočtem frekvence za běhu (`tone()` ve smyčce), takže nezabírají skoro žádnou paměť.
 
+### Struktura projektu
+
+```
+platformio.ini       # konfigurace PlatformIO (deska, framework)
+src/
+  main.cpp            # hlavní program
+include/
+  pitches.h           # definice frekvencí hudebních not
+```
+
+### Vývoj a nahrání přes VS Code + PlatformIO
+
+1. Ve VS Code nainstalujte rozšíření **PlatformIO IDE** (repozitář obsahuje `.vscode/extensions.json`, takže VS Code jej sám nabídne k instalaci).
+2. Otevřete kořenovou složku repozitáře ve VS Code – PlatformIO automaticky rozpozná `platformio.ini` (deska `uno`, framework `arduino`).
+3. Sestavení: PlatformIO panel → *Build*, nebo v terminálu `pio run`.
+4. Nahrání do desky: PlatformIO panel → *Upload*, nebo `pio run --target upload`.
+5. Sériový monitor (9600 Bd): PlatformIO panel → *Monitor*, nebo `pio device monitor`.
+
+Projekt lze samozřejmě nahrát i klasicky přes Arduino IDE – stačí otevřít `src/main.cpp` a `include/pitches.h` zkopírovat do stejné složky jako `.ino` (nebo přidat cestu `include/` do "Additional Board/Library" vyhledávání).
+
 ---
 
 ## English
@@ -112,7 +132,7 @@ Sirens and alarm signals (1–6, 12) are generated procedurally (frequency chang
 
 ### Console output language
 
-At the top of `buzzer_demo.ino` there is a constant:
+At the top of `src/main.cpp` there is a constant:
 
 ```cpp
 const uint8_t LANGUAGE = LANG_CS; // <-- change to LANG_EN for English output
@@ -159,9 +179,19 @@ Both buttons use the internal pull-up resistors (`INPUT_PULLUP`), so **no extern
 ### Project structure
 
 ```
-buzzer_demo/
-  buzzer_demo.ino   # main sketch
-  pitches.h         # musical note frequency definitions
+platformio.ini        # PlatformIO configuration (board, framework)
+src/
+  main.cpp             # main program
+include/
+  pitches.h            # musical note frequency definitions
 ```
 
-Open `buzzer_demo/buzzer_demo.ino` in the Arduino IDE (or `arduino-cli`) and upload it to an Arduino UNO R3.
+### Building and uploading with VS Code + PlatformIO
+
+1. Install the **PlatformIO IDE** extension in VS Code (the repo ships a `.vscode/extensions.json`, so VS Code will offer to install it automatically).
+2. Open the repository's root folder in VS Code – PlatformIO auto-detects `platformio.ini` (board `uno`, framework `arduino`).
+3. Build: PlatformIO panel → *Build*, or `pio run` in the terminal.
+4. Upload to the board: PlatformIO panel → *Upload*, or `pio run --target upload`.
+5. Serial monitor (9600 baud): PlatformIO panel → *Monitor*, or `pio device monitor`.
+
+The project can still be built with the classic Arduino IDE too – open `src/main.cpp` and copy `include/pitches.h` next to it (or add the `include/` path to the IDE's library/include search path).
