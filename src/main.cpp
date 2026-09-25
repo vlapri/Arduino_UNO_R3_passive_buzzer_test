@@ -28,7 +28,7 @@ const uint8_t LANGUAGE = LANG_CS;
 // ---------------------------------------------------------------------------
 // Piny / Pins
 // ---------------------------------------------------------------------------
-const uint8_t BUZZER_PIN = 8;
+const uint8_t BUZZER_PIN = 9;
 const uint8_t BUTTON_NEXT_PIN = 2; // INT0
 const uint8_t BUTTON_PREV_PIN = 3; // INT1
 

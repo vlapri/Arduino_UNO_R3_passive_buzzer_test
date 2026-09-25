@@ -49,7 +49,7 @@ Změnou hodnoty na `LANG_EN` se přepnou všechny výpisy do Serial monitoru do 
 ```
                      Arduino UNO R3
                   ┌───────────────────┐
-   Buzzer (+) ────┤ D8                │
+   Buzzer (+) ────┤ D9                │
    Buzzer (-) ──┐ │                   │
                 │ │                   │
   Tl. Další ────┼─┤ D2                │
